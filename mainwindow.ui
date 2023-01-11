@@ -1,0 +1,860 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>957</width>
+    <height>983</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>800</width>
+    <height>0</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>AutoLightSupport</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">/*灰色*/
+QWidget
+{
+    background-color: rgb(240,240,240); /*背景色*/
+    color: black;  /*字体颜色*/
+}
+/*按钮正常状态*/
+QPushButton {
+    background-color: #ffffff;
+    border: 2px solid #000000;
+    padding: 10px;
+    border-radius: 5px;
+	font-size: 12pt;
+}
+
+QPushButton:hover {
+    background-color: #ecf5ff;
+    color: #409eff;
+	font-size: 13pt;
+}
+
+QPushButton:pressed, QPushButton:checked {
+    border: 1px solid #3a8ee6;
+    color: #409eff;
+	font-size: 12pt;
+}
+
+QLineEdit
+{
+    background-color:rgb(240,240,240);/*背景色*/
+    min-height:0px; /*最小高度*/
+    min-width:px; /*最小宽度*/
+    border-style:solid;/*边框样式 solid实线 none无边框 inset/outset 3D边框*/
+    border-width:3px; /*边框宽度像素*/
+    border-radius:5px;/*边框圆角半径像素*/
+    border-color:rgba(205,205,205);/*边框颜色*/
+    font-size:12pt;/*字体 字体大小*/
+    color: black;/*字体颜色*/
+    padding:0px;/*填衬*/
+}
+QCheckBox
+{
+    color:black;/*字体颜色*/
+    background-color:rgb(240,240,240);/*背景色*/
+}
+QComboBox
+{
+    background-color:rgb(240,240,240);
+    color: black;/*字体颜色*/
+    border-style:solid;/*边框样式 solid实线 none无边框 inset/outset 3D边框*/
+    border-width:4px;/*边框宽度像素*/
+    border-radius:10px;/*边框圆角半径像素*/
+    border-color:rgba(205,205,205);/*边框颜色*/
+    min-height:35px; /*最小高度*/
+    font-size:12pt;
+}
+/*向下的三角形箭头样式*/
+QComboBox::drop-down
+{
+     width:20px;
+     border:none;
+     background:transparent;
+ }
+/*向下的三角形箭头*/
+QComboBox::down-arrow
+{
+    image:url(:/image/array_down.png);
+}
+/*下拉后的整个下拉窗体*/
+QComboBox QAbstractItemView
+{
+ background-color: rgb(240,240,240); /*背景色*/
+    color: black;/*字体颜色*/
+outline:none;
+}
+/*下拉框下面的item*/
+QComboBox QAbstractItemView::item
+{
+    height:30px;
+    color: black;/*字体颜色*/
+}
+/*下拉框item选中*/
+QComboBox QAbstractItemView::item:selected
+{
+    background-color: rgb(240,240,240); /*背景色*/
+    color: black;/*字体颜色*/
+}
+QLabel
+{
+    color: black;/*字体颜色*/
+font-size:12pt;
+border:none;/*边框样式*/
+}
+QTabWidget
+{
+    background-color: rgb(240,240,240); /*背景色*/
+    color: black;/*字体颜色*/
+}
+QTabBar::tab
+{
+    background-color: rgb(240,240,240); /*背景色*/
+    color: black;/*字体颜色*/
+    font-size:12pt;/*字体大小*/
+    height:30px; /*高度*/
+    min-width:100px;/*宽度*/
+    border-top-left-radius:4px;/*左上边框圆角半径像素*/
+    border-top-right-radius:4px;/*右上边框圆角半径像素*/
+    margin-right: 5px;/*右边距  右外边距*/
+    padding-left:5px;/*左填充--左内边距*/
+    padding-right:5px;/*右填充--右内边距*/
+}
+QTabBar::tab:hover
+{
+    background-color: rgb(198,198,208); /*背景色*/
+}
+QTabBar::tab:selected
+{
+    background-color: rgb(198,198,198); /*背景色*/
+}
+QTableView,QTableWidget{
+    background-color: rgb(240,240,240); /*背景色*/
+    color: black;/*字体颜色*/
+    selection-background-color:rgba(192,221,244);/*背景色*/;/*点击选中颜色*/
+    border:1px solid #E0DDDC;/*边框为1像素，灰色*/
+    gridline-color:lightgray;/*这个是表格的格子线的颜色，为亮灰*/
+    font:bold 12pt;/*字体 字体大小*/
+}
+/*表格表头样式*/
+QHeaderView::section{
+    background-color:rgb(240,240,240); /*背景色*/
+    border:0px solid #E0DDDC;/*先把边框宽度设为0，即隐藏所有表头边框*/
+    border-bottom:1px solid #E0DDDC;/*然后只显示下边框，因为上边框和左右边框是整个Table的边框，都显示会有2px的边框宽度*/
+    min-height:30px;;/*表头高度*/
+    font-size:12pt;/*字体大小*/
+}
+QTreeWidget,QTreeView
+{
+    background-color: rgb(240,240,240); /*背景色*/
+    color: rgb(79,129,168);/*字体颜色*/
+    selection-background-color:rgba(5,23,200);/*点击选中颜色*/
+    font-size:12pt;/*字体大小*/
+}
+/*收起状态*/
+QTreeWidget::branch:has-children:!has-siblings:closed,
+QTreeWidget::branch:closed:has-children:has-siblings {
+    border-image: none;
+    image: url(:/image/add-line_horizontal.png);
+}
+/*展开状态*/
+QTreeWidget::branch:open:has-children:!has-siblings,
+QTreeWidget::branch:open:has-children:has-siblings  {
+    border-image: none;
+    image: url(:/image/array_down.png);
+}
+/*收起状态*/
+QTreeView::branch:has-children:!has-siblings:closed,
+QTreeView::branch:closed:has-children:has-siblings {
+    border-image: none;
+    image: url(:/image/add-line_horizontal.png);
+}
+/*展开状态*/
+QTreeView::branch:open:has-children:!has-siblings,
+QTreeView::branch:open:has-children:has-siblings  {
+    border-image: none;
+    image: url(:/image/array_down.png);
+}
+</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <layout class="QGridLayout" name="gridLayout" rowstretch="3,10">
+    <property name="leftMargin">
+     <number>8</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>8</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <item row="1" column="0">
+     <widget class="QFrame" name="infoBox">
+      <property name="minimumSize">
+       <size>
+        <width>600</width>
+        <height>600</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">\</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_2" rowstretch="0,0" columnstretch="7,3">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <property name="horizontalSpacing">
+        <number>5</number>
+       </property>
+       <property name="verticalSpacing">
+        <number>0</number>
+       </property>
+       <item row="0" column="1">
+        <widget class="QGroupBox" name="infoBox_2">
+         <property name="title">
+          <string>基本信息</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_3">
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_2">
+            <property name="text">
+             <string>信息接收状态</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QLabel" name="channelLabel">
+            <property name="text">
+             <string>无图像</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_5">
+            <property name="text">
+             <string>图像通道</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="label_4">
+            <property name="text">
+             <string>帧数</string>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="0">
+           <widget class="QLabel" name="label_12">
+            <property name="text">
+             <string>最优光强</string>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="0">
+           <widget class="QLabel" name="label_11">
+            <property name="text">
+             <string>最优补光波长</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="QLabel" name="frameCountLabel">
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="0">
+           <widget class="QLabel" name="label_9">
+            <property name="text">
+             <string>初始化光强</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="label">
+            <property name="text">
+             <string>图像宽度</string>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="1">
+           <widget class="QLabel" name="label_14">
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLabel" name="widthLabel">
+            <property name="text">
+             <string>无图像</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLabel" name="heightLabel">
+            <property name="text">
+             <string>无图像</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QLabel" name="infoStatusLabel">
+            <property name="text">
+             <string>等待</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="1">
+           <widget class="QLabel" name="label_13">
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="1">
+           <widget class="QLabel" name="label_15">
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_3">
+            <property name="text">
+             <string>图像高度</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QGroupBox" name="logBox">
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <property name="title">
+          <string>日志</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_10">
+          <item row="0" column="0">
+           <widget class="QPlainTextEdit" name="logEdit">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background: rgb(0, 0, 0);</string>
+            </property>
+            <property name="verticalScrollBarPolicy">
+             <enum>Qt::ScrollBarAsNeeded</enum>
+            </property>
+            <property name="sizeAdjustPolicy">
+             <enum>QAbstractScrollArea::AdjustIgnored</enum>
+            </property>
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+            <property name="maximumBlockCount">
+             <number>-3</number>
+            </property>
+            <property name="backgroundVisible">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="0" column="0" rowspan="2">
+        <widget class="QGroupBox" name="imageGroup">
+         <property name="autoFillBackground">
+          <bool>false</bool>
+         </property>
+         <property name="title">
+          <string>图像</string>
+         </property>
+         <property name="flat">
+          <bool>false</bool>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_9">
+          <item row="0" column="0">
+           <widget class="QLabel" name="imageLabel">
+            <property name="text">
+             <string>无图像</string>
+            </property>
+            <property name="textFormat">
+             <enum>Qt::AutoText</enum>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="0" column="0">
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="currentIndex">
+       <number>1</number>
+      </property>
+      <widget class="QWidget" name="tab_3">
+       <attribute name="title">
+        <string>软件设置</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_4">
+        <item row="0" column="0">
+         <widget class="QFrame" name="frame">
+          <property name="toolTip">
+           <string>主要设置处理视频及下位机传输图片时的各项参数</string>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_8" rowstretch="2,2,6">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <property name="spacing">
+            <number>0</number>
+           </property>
+           <item row="1" column="1">
+            <widget class="QFrame" name="frame_5">
+             <property name="styleSheet">
+              <string notr="true"/>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_13">
+              <item row="0" column="0">
+               <widget class="QPushButton" name="lightEnhancedButton">
+                <property name="text">
+                 <string>增强光照</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QPushButton" name="lightWeakenButton">
+                <property name="text">
+                 <string>减弱光照</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item row="2" column="0" colspan="2">
+            <widget class="QFrame" name="frame_4">
+             <property name="styleSheet">
+              <string notr="true"/>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_12">
+              <item row="1" column="0">
+               <widget class="QCheckBox" name="openLightCheckbox">
+                <property name="text">
+                 <string>开启光照</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QCheckBox" name="autoLightSupportButton">
+                <property name="text">
+                 <string>自动补光</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="0">
+               <widget class="QCheckBox" name="proceeImageButton">
+                <property name="text">
+                 <string>处理图像</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="1">
+               <widget class="QCheckBox" name="recognizeCheckBox">
+                <property name="text">
+                 <string>识别并标注</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="0">
+               <widget class="QFrame" name="frame_6">
+                <property name="frameShape">
+                 <enum>QFrame::StyledPanel</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+                <layout class="QGridLayout" name="gridLayout_15">
+                 <property name="leftMargin">
+                  <number>0</number>
+                 </property>
+                 <item row="0" column="0" rowspan="2" colspan="2">
+                  <widget class="QCheckBox" name="saveAfterCheckBox">
+                   <property name="text">
+                    <string>保存处理后图像</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="1">
+                  <widget class="QPushButton" name="chooseAfterLoc">
+                   <property name="text">
+                    <string>选择保存位置</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QCheckBox" name="closeLightCheckbox">
+                <property name="text">
+                 <string>关闭光照</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="2">
+               <widget class="QCheckBox" name="adaptiveCheckbox">
+                <property name="text">
+                 <string>图像显示适应长宽比</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="2">
+               <widget class="QCheckBox" name="supportLightCheckbox">
+                <property name="text">
+                 <string>手动补光</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="2">
+               <widget class="QFrame" name="frame_7">
+                <property name="frameShape">
+                 <enum>QFrame::StyledPanel</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+                <layout class="QHBoxLayout" name="horizontalLayout">
+                 <property name="leftMargin">
+                  <number>0</number>
+                 </property>
+                 <item>
+                  <widget class="QCheckBox" name="saveBeforeCheckbox">
+                   <property name="text">
+                    <string>保存处理前图像</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="choseBeforeLoc">
+                   <property name="text">
+                    <string>选择保存位置</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item row="0" column="0" colspan="2">
+            <widget class="QFrame" name="frame_2">
+             <property name="styleSheet">
+              <string notr="true"/>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_6">
+              <item row="0" column="3">
+               <widget class="QPushButton" name="endProcessButton">
+                <property name="text">
+                 <string>结束处理</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="2">
+               <widget class="QPushButton" name="pauseProcessButton">
+                <property name="text">
+                 <string>暂停处理</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="0">
+               <widget class="QPushButton" name="beginProcessButton">
+                <property name="text">
+                 <string>开始处理</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QFrame" name="frame_3">
+             <property name="styleSheet">
+              <string notr="true"/>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_11">
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_16">
+                <property name="text">
+                 <string>图像源</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QPushButton" name="fileSelectButton">
+                <property name="text">
+                 <string>选择文件</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_4">
+       <attribute name="title">
+        <string>硬件设置</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_14">
+        <item row="0" column="0">
+         <widget class="QFrame" name="frame_2">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
+          <property name="toolTip">
+           <string>主要用于设置下位机各项参数</string>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_5" rowstretch="4,8,8,8,8,8" columnstretch="1,1,9">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <property name="horizontalSpacing">
+            <number>15</number>
+           </property>
+           <property name="verticalSpacing">
+            <number>0</number>
+           </property>
+           <item row="1" column="0" colspan="2">
+            <widget class="QLabel" name="label_6">
+             <property name="text">
+              <string>同步脉冲宽度</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="label_7">
+             <property name="text">
+              <string>频率</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="label_8">
+             <property name="text">
+              <string>延时时间</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0">
+            <widget class="QLabel" name="label_10">
+             <property name="text">
+              <string>最大光照强度</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="2">
+            <widget class="QLineEdit" name="frequencyEdit"/>
+           </item>
+           <item row="3" column="2">
+            <widget class="QLineEdit" name="delayedTimeEdit"/>
+           </item>
+           <item row="4" column="2">
+            <widget class="QLineEdit" name="maxIntensityEdit"/>
+           </item>
+           <item row="0" column="0" colspan="3">
+            <widget class="QFrame" name="frame">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>70</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true"/>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_7">
+              <property name="leftMargin">
+               <number>0</number>
+              </property>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <property name="rightMargin">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
+              <item row="0" column="0">
+               <widget class="QPushButton" name="beginShootButton">
+                <property name="text">
+                 <string>test</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QPushButton" name="pauseShootButton">
+                <property name="text">
+                 <string>暂停拍摄</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="2">
+               <widget class="QPushButton" name="endShootButton">
+                <property name="text">
+                 <string>结束拍摄</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item row="1" column="2">
+            <widget class="QLineEdit" name="pulseWidthEdit"/>
+           </item>
+           <item row="5" column="0">
+            <widget class="QLabel" name="label_17">
+             <property name="text">
+              <string>光照增强/减弱幅度</string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="2">
+            <widget class="QLineEdit" name="rangEdit"/>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>957</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>文件</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menu_2">
+    <property name="title">
+     <string>设置</string>
+    </property>
+   </widget>
+   <addaction name="menu"/>
+   <addaction name="menu_2"/>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>
